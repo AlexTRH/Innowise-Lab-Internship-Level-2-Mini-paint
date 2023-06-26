@@ -4,11 +4,12 @@
     "es2021": true
   },
   "extends": [
-    "airbnb",
-    "airbnb-typescript",
-    "airbnb/hooks",
+    "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:react/jsx-runtime",
+    // "plugin:import/recommended",
     "prettier"
   ],
   "overrides": [],
@@ -22,6 +23,7 @@
     "react", "@typescript-eslint"
   ],
   "rules": {
+    "prefer-const": "off",
     "react/react-in-jsx-scope": 0,
     "react/jsx-filename-extension": [
       1,
@@ -36,3 +38,4 @@
     ]
   }
 }
+

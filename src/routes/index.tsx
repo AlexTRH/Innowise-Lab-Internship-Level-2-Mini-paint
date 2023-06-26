@@ -1,9 +1,21 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Outlet } from 'react-router-dom';
+import SignUp from '../pages/SignUp/SignUp.tsx';
 
 const routes = [
   {
-    path: '/',
-    element: <div>Hello world!</div>,
+    element: (
+      <div>
+        <Outlet />
+      </div>
+    ),
+    children: [
+      {
+        path: '/',
+        element: <SignUp />,
+      },
+    ],
   },
 ];
-export const router = createBrowserRouter(routes);
+const router = createBrowserRouter(routes);
+
+export default router;
