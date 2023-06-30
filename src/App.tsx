@@ -1,8 +1,10 @@
 import { RouterProvider } from 'react-router-dom';
-import router from './routes';
+import { privateRouter, publicRouter } from './routes';
+import { useUserStore } from './hooks/useStoreSelector.ts';
 
 function App() {
-  return <RouterProvider router={router} />;
+  const { user } = useUserStore();
+  return <RouterProvider router={user ? publicRouter : privateRouter} />;
 }
 
 export default App;

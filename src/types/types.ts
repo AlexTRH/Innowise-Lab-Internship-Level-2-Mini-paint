@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { SvgIconProps } from '@mui/material';
+import { SvgIconProps } from '@mui/material/SvgIcon';
 
 export interface UserState {
   user: string | null;

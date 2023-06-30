@@ -1,28 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { LOCAL_STORAGE_KEYS } from '../../constants/localStorageKeys.ts';
+import { UserState } from '../../types/types.ts';
 
+const persistedUser = localStorage.getItem(LOCAL_STORAGE_KEYS.user);
+const initialState: UserState = {
+  user: persistedUser && JSON.parse(persistedUser),
+};
 export const userSlice = createSlice({
-  name: 'user',
-  initialState: {
-    value: 0,
-  },
+  name: LOCAL_STORAGE_KEYS.user,
+  initialState,
   reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1;
+    saveUser: (state, action: PayloadAction<string | null>) => {
+      state.user = action.payload;
     },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    deleteUser: (state) => {
+      state.user = null;
     },
   },
 });
-
-// Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = userSlice.actions;
-
+export const { saveUser, deleteUser } = userSlice.actions;
 export default userSlice.reducer;
