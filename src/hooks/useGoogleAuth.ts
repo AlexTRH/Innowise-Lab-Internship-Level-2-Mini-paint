@@ -8,9 +8,9 @@ import {
   signInWithPopup,
   signInWithRedirect,
 } from 'firebase/auth';
-import { signIn } from '../api/auth.ts';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
+import { saveUser } from '../store/slice/userSlice.ts';
 
 const useGoogleAuth = () => {
   const dispatch = useDispatch();
@@ -31,14 +31,9 @@ const useGoogleAuth = () => {
     } else {
       signInWithPopup(auth, google)
         .then((result) => {
-          dispatch(
-            signIn({
-              email: result.user.email,
-              name: result.user.displayName,
-              uid: result.user.uid,
-            })
-          );
+          dispatch(saveUser(result.user?.email));
           navigate('../');
+
           toast.success('Entered');
         })
         .catch((error: AuthError) => {

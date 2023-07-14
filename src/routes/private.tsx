@@ -1,18 +1,20 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom';
-import SignUp from '../pages/SignUp/SignUp.tsx';
+import { SignUpPage } from '../pages/SignUp/SignUpPage.tsx';
 import { ERoutesNames } from '../types/router.ts';
+import { Header } from '../components/containers/Header/Header.tsx';
 
 const routes = [
   {
     element: (
       <div>
+        <Header />
         <Outlet />
       </div>
     ),
     children: [
       {
         path: ERoutesNames.SIGN_UP,
-        element: <SignUp />,
+        element: <SignUpPage />,
       },
     ],
   },

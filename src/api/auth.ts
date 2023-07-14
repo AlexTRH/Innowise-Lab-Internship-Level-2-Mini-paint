@@ -17,7 +17,7 @@ export const createUser = (email: string, password: string) => {
 };
 
 export const signIn = (email: string, password: string) => {
-  localStorage.setItem(LOCAL_STORAGE_KEYS.user, JSON.stringify(email));
+  localStorage.setItem(LOCAL_STORAGE_KEYS.user, email);
   return signInWithEmailAndPassword(auth, email, password);
 };
 

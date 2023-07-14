@@ -1,9 +1,9 @@
 import { RouterProvider } from 'react-router-dom';
 import { privateRouter, publicRouter } from './routes';
-import { useUserStore } from './hooks/useStoreSelector.ts';
+import { useTypedSelector } from './hooks/useTypedSelector.ts';
 
 function App() {
-  const { user } = useUserStore();
+  const user = useTypedSelector((state) => state.user.user);
   return <RouterProvider router={user ? publicRouter : privateRouter} />;
 }
 
