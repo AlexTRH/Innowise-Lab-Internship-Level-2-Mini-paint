@@ -1,6 +1,6 @@
 import { memo, useCallback, useState } from 'react';
 import { useTypedSelector } from '../../../hooks/useTypedSelector.ts';
-import { useUserDispatch } from '../../../hooks/useTypedDispatch.ts';
+import { useTypedDispatch } from '../../../hooks/useTypedDispatch.ts';
 import { toggleTheme } from '../../../store/slice/themeSlice.ts';
 import { logout } from '../../../api/auth.ts';
 import { showErrorLogOut } from '../../views/Toasts/showErrorLogOut.ts';
@@ -22,7 +22,7 @@ import { ERoutesNames } from '../../../types/router.ts';
 export const Header = memo(() => {
   const user = useTypedSelector((state) => state.user.user);
   const theme = useTypedSelector((state) => state.theme.darkTheme);
-  const dispatch = useUserDispatch();
+  const dispatch = useTypedDispatch();
   const [error, setError] = useState<string>('');
 
   const changeTheme = useCallback(() => {
