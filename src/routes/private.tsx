@@ -1,8 +1,8 @@
-import { createBrowserRouter, Outlet } from 'react-router-dom';
-import { SignUpPage } from '../pages/SignUp/SignUpPage.tsx';
+import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
 import { ERoutesNames } from '../types/router.ts';
 import { Header } from '../components/containers/Header/Header.tsx';
-import { SignInPage } from '../pages/SignIn/SignInPage.tsx';
+import { PaintPage } from '../pages/PaintPage/PaintPage.tsx';
+import { GalleryPage } from '../pages/GalleryPage/GalleryPage.tsx';
 
 const routes = [
   {
@@ -14,12 +14,16 @@ const routes = [
     ),
     children: [
       {
-        path: ERoutesNames.SIGN_UP,
-        element: <SignUpPage />,
+        path: ERoutesNames.PAINT,
+        element: <PaintPage />,
       },
       {
-        path: ERoutesNames.SIGN_IN,
-        element: <SignInPage />,
+        path: ERoutesNames.GALLERY,
+        element: <GalleryPage />,
+      },
+      {
+        path: ERoutesNames.NOT_FOUND,
+        element: <Navigate to={ERoutesNames.PAINT} replace />,
       },
     ],
   },

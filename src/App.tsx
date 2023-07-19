@@ -1,23 +1,27 @@
-import { RouterProvider } from 'react-router-dom';
-import { privateRouter, publicRouter } from './routes';
-import { useTypedSelector } from './hooks/useTypedSelector.ts';
+import { useEffect } from 'react';
+import { useTypedDispatch } from './hooks/useTypedDispatch';
+import { useTypedSelector } from './hooks/useTypedSelector';
+import { authCheck } from './api/auth';
+import AppRouter from '../src/routes/AppRouter';
+import { ThemeProvider } from 'styled-components';
+import { THEME_TYPE } from './constants/theme';
 
 function App() {
-  const user = useTypedSelector((state) => state.user.user);
-  const isUser = user ? publicRouter : privateRouter;
+  const dispatch = useTypedDispatch();
+  const theme = useTypedSelector((state) => state.theme.darkTheme);
+  const currentTheme = theme ? THEME_TYPE.dark : THEME_TYPE.light;
 
-  return <RouterProvider router={isUser} />;
+  useEffect(() => {
+    authCheck(dispatch);
+  }, [dispatch]);
+
+  return (
+    <>
+      <ThemeProvider theme={{ theme: currentTheme }}>
+        <AppRouter />
+      </ThemeProvider>
+    </>
+  );
 }
 
 export default App;
-
-// import { RouterProvider } from 'react-router-dom';
-// import { privateRouter, publicRouter } from './routes';
-// import { useTypedSelector } from './hooks/useTypedSelector.ts';
-//
-// function App() {
-//   const user = useTypedSelector((state) => state.user.user);
-//   return <RouterProvider router={user ? publicRouter : privateRouter} />;
-// }
-//
-// export default App;

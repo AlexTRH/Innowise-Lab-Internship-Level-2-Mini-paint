@@ -1,5 +1,4 @@
-import { TPrevPosition } from '../types/types.ts';
-import React from 'react';
+import { TPrevPosition } from '../types/types';
 
 export const drawRect = (
   e: React.MouseEvent<HTMLCanvasElement>,
@@ -130,7 +129,7 @@ export const eraser = (
 export const brush = (
   e: React.MouseEvent<HTMLCanvasElement>,
   ctx: CanvasRenderingContext2D | null,
-  prevPosition: TPrevPosition,
+  // prevPosition: TPrevPosition,
   fillColor: boolean,
   color: string
 ) => {
