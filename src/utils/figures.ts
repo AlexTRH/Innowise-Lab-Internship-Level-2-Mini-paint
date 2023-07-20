@@ -129,7 +129,7 @@ export const eraser = (
 export const brush = (
   e: React.MouseEvent<HTMLCanvasElement>,
   ctx: CanvasRenderingContext2D | null,
-  // prevPosition: TPrevPosition,
+  _prevPosition: TPrevPosition,
   fillColor: boolean,
   color: string
 ) => {

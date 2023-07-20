@@ -4,7 +4,7 @@ import { UserState } from '../../types/types.ts';
 
 const persistedUser = localStorage.getItem(LOCAL_STORAGE_KEYS.user);
 const initialState: UserState = {
-  user: persistedUser && JSON.parse(persistedUser),
+  user: persistedUser,
 };
 export const userSlice = createSlice({
   name: LOCAL_STORAGE_KEYS.user,
