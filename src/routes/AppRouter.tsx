@@ -1,12 +1,17 @@
-import { RouterProvider } from 'react-router-dom';
-import { privateRouter, publicRouter } from '../routes';
-import { useTypedSelector } from '../hooks/useTypedSelector.ts';
+import { Routes, Route } from 'react-router-dom';
+import { publicRoutes } from './public.tsx';
+import { privateRoutes } from './private.tsx';
+import { useTypedSelector } from './../hooks/useTypedSelector';
 
-function AppRouter() {
+export const AppRouter = () => {
   const user = useTypedSelector((state) => state.user.user);
-  const isUser = user ? publicRouter : privateRouter;
+  const isUser = user ? privateRoutes : publicRoutes;
 
-  return <RouterProvider router={isUser} />;
-}
-
-export default AppRouter;
+  return (
+    <Routes>
+      {isUser.map((route) => (
+        <Route path={route.path} element={route.element} key={route.path} />
+      ))}
+    </Routes>
+  );
+};

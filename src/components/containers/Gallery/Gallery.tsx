@@ -1,4 +1,4 @@
-import { FC, useEffect, useState, useCallback } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { readPaintings } from '../../../api/db';
 import { useTypedDispatch } from '../../../hooks/useTypedDispatch';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
@@ -23,22 +23,23 @@ export const Gallery: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const uniqUsers: Array<string> = Array.from(new Set(users));
 
-  const loadPaintings = useCallback(async () => {
-    setError('');
-    setIsLoading(true);
-    try {
-      await readPaintings(dispatch, setUsers);
-    } catch (e) {
-      setError((e as Error).message);
-      showErrorGallery(error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [dispatch, error]);
-
   useEffect(() => {
+    const loadPaintings = async () => {
+      setError('');
+      setIsLoading(true);
+      try {
+        await readPaintings(dispatch, setUsers);
+      } catch (e) {
+        console.log(e);
+        setError((e as Error).message);
+        showErrorGallery(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     loadPaintings();
-  }, [loadPaintings]);
+  }, []);
 
   const setSelectUsers = () => (e: SelectChangeEvent<string>) =>
     setFilteredUser(e.target.value);

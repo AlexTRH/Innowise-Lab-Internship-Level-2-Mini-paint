@@ -1,31 +1,14 @@
-import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
+import { IRoute } from '../types/types.ts';
 import { ERoutesNames } from '../types/router.ts';
-import { Header } from '../components/containers/Header/Header.tsx';
 import { PaintPage } from '../pages/PaintPage/PaintPage.tsx';
 import { GalleryPage } from '../pages/GalleryPage/GalleryPage.tsx';
+import { Navigate } from 'react-router-dom';
 
-const routes = [
+export const privateRoutes: IRoute[] = [
+  { path: ERoutesNames.PAINT, element: <PaintPage /> },
+  { path: ERoutesNames.GALLERY, element: <GalleryPage /> },
   {
-    element: (
-      <div>
-        <Header />
-        <Outlet />
-      </div>
-    ),
-    children: [
-      {
-        path: ERoutesNames.PAINT,
-        element: <PaintPage />,
-      },
-      {
-        path: ERoutesNames.GALLERY,
-        element: <GalleryPage />,
-      },
-      {
-        path: ERoutesNames.NOT_FOUND,
-        element: <Navigate to={ERoutesNames.PAINT} replace />,
-      },
-    ],
+    path: ERoutesNames.NOT_FOUND,
+    element: <Navigate to={ERoutesNames.PAINT} replace />,
   },
 ];
-export const privateRouter = createBrowserRouter(routes);
