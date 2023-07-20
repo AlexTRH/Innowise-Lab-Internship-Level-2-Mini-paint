@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import { publicRoutes, privateRoutes } from './routes.tsx';
+import { publicRoutes } from './public.tsx';
+import { privateRoutes } from './private.tsx';
 import { useTypedSelector } from './../hooks/useTypedSelector';
 
 export const AppRouter = () => {
