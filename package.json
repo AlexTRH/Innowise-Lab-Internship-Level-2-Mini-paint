@@ -24,10 +24,9 @@
     "firebase": "^9.22.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-dotenv": "^0.1.3",
     "react-hook-form": "^7.45.1",
     "react-redux": "^8.1.1",
-    "react-router-dom": "^6.6.2",
+    "react-router-dom": "^6.13.0",
     "react-spinners-kit": "^1.9.1",
     "react-toastify": "^9.1.3",
     "redux": "^4.2.1",
@@ -38,7 +37,6 @@
     "ts-jest": "^29.1.1",
     "uid": "^2.0.2",
     "vite": "^4.3.9",
-    "web-vitals": "^3.4.0",
     "yup": "^1.2.0"
   },
   "devDependencies": {
