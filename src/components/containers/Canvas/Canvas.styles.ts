@@ -11,6 +11,6 @@ export const ButtonsContainer = styled.div`
 `;
 
 export const CanvasWrapper = styled.canvas`
-  border: 1px solid #0018f3;
+  border: 1px solid #1976d2;
   background-color: white;
 `;
