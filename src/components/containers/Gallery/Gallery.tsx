@@ -14,18 +14,20 @@ import {
 } from '@mui/material';
 import { PaintingsContainer, FormControlWrapper } from './Gallery.styles';
 
-export const Gallery: FC = () => {
+const Gallery: FC = () => {
   const { usersPaintings } = useTypedSelector((state) => state.usersPaintings);
   const dispatch = useTypedDispatch();
   const [users, setUsers] = useState<Array<string>>([]);
   const [filteredUser, setFilteredUser] = useState<string>('All');
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const uniqUsers: Array<string> = Array.from(new Set(users));
 
   const loadPaintings = useCallback(async () => {
     setError('');
     setIsLoading(true);
+
     try {
       await readPaintings(dispatch, setUsers);
     } catch (e) {
@@ -53,16 +55,15 @@ export const Gallery: FC = () => {
         <FormControl fullWidth>
           <Select autoFocus onChange={setSelectUsers()} defaultValue={'All'}>
             <MenuItem value={'All'}>{'All'}</MenuItem>
-            {uniqUsers.map((user) => {
-              return (
-                <MenuItem key={user} value={user}>
-                  {user}
-                </MenuItem>
-              );
-            })}
+            {uniqUsers.map((user) => (
+              <MenuItem key={user} value={user}>
+                {user}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </FormControlWrapper>
+      {error && <div>Error: {error}</div>}
       <PaintingsContainer>
         {filteredUser === 'All'
           ? [...usersPaintings]
@@ -97,3 +98,5 @@ export const Gallery: FC = () => {
     </>
   );
 };
+
+export default Gallery;
